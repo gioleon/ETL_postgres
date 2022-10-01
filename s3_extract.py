@@ -8,6 +8,9 @@ def get_file() -> None:
     Downloads the csv file from S3 bucket.
     """
 
+    if not os.path.exists("data"):
+        os.makedirs('data/preprocess')
+
     # Connect to S3 bucket
     client = boto3.client(
         's3', aws_access_key_id=config('ACCESS_KEY_ID'),

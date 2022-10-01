@@ -1,6 +1,7 @@
 """
 Let's do some of feature engineering.
 """
+import os
 import re
 import datetime
 import numpy as np
@@ -287,6 +288,10 @@ def transform_data(df: pd.DataFrame) -> pd.DataFrame:
     df['recorded_date'] = df['recorded_date'].replace(np.nan, 'no data')
     df['event'] = df['event'].replace(np.nan, 'no data')
 
+    # Create folder if not exists.
+    if not os.path.exists('data/staging'):
+        os.makedirs('data/staging')
+
     df.to_csv("./data/staging/cleaned_talks_info.csv", index=False)
 
     return df
@@ -311,6 +316,3 @@ def main_transform():
     new_df = transform_data(df.copy())
 
     return new_df
-
-
-main_transform()

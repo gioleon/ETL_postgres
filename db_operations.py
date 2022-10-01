@@ -12,7 +12,7 @@ def ingest_data(df: pd.DataFrame) -> None:
 
     @input: pandas.DataFrame
     """
-    df.to_sql('ted_talks', con=engine, if_exists='append', index= False)
+    df.to_sql('ted_talks', con=engine, if_exists='replace', index= False)
 
 
 def create_table() -> None:
